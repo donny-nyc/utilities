@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# quasi-random string generator based on 
+# https://www.saotn.org/bash-function-to-generate-a-random-alphanumeric-string/
+#
+# usage: ./a.out [length]
+# - length: 1-72
+
+length=16
+
+if [ $# -eq 1 ]
+then
+	length=$1
+fi
+
+cat /dev/urandom | tr --delete --complement '0-~' | fold --width ${1:-$length} | head -1 
